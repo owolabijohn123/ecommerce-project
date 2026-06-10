@@ -31,7 +31,7 @@ module "eks" {
   access_entries = {
     # One access entry with a policy associated
     example = {
-      principal_arn = "arn:aws:iam::876997124628:user/terraform"
+      principal_arn = "arn:aws:iam::326334469007:user/terraform"
 
       policy_associations = {
         example = {
@@ -77,7 +77,7 @@ module "eks" {
 
   eks_managed_node_group_defaults = {
 
-    instance_types = ["t3.large"]
+    instance_types = ["t3.small"]
 
     attach_cluster_primary_security_group = true
 
@@ -87,12 +87,12 @@ module "eks" {
 
   eks_managed_node_groups = {
 
-    tws-demo-ng = {
+    myapp-prod-ng = {
       min_size     = 1
       max_size     = 3
-      desired_size = 1
+      desired_size = 3
 
-      instance_types = ["t3.large"]
+      instance_types = ["t3.small"]
       capacity_type  = "SPOT"
 
       disk_size                  = 35
@@ -104,7 +104,7 @@ module "eks" {
       }
 
       tags = {
-        Name        = "tws-demo-ng"
+        Name        = "myapp-prod-ng"
         Environment = "dev"
         ExtraTag    = "e-commerce-app"
       }
