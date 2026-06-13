@@ -1,5 +1,4 @@
 @Library('Shared') _
-
 pipeline {
     agent any
     
@@ -119,6 +118,12 @@ pipeline {
                     )
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            sh 'sudo docker system prune -af'
         }
     }
 }
